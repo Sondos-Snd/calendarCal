@@ -14,10 +14,5 @@ phases:
       - echo build process started now
       - git checkout main
       - ng build 
-  post_build:
-    commands:
-      - echo build process finished, we should uplload to S3 now
-      - cd dist/app
-      - ls -la
 
 
