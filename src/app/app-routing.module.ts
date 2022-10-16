@@ -15,7 +15,7 @@ import {SubMenuComponent} from '@pages/main-menu/sub-menu/sub-menu.component';
 
 const routes: Routes = [
     {
-        path: '',
+        path: 'login',
         component: MainComponent,
         children: [
             {
@@ -39,6 +39,32 @@ const routes: Routes = [
                 component: DashboardComponent
             }
         ]
+    },
+    {
+    path: '',
+    component: MainComponent,
+    children: [
+        {
+            path: 'profile',
+            component: ProfileComponent
+        },
+        {
+            path: 'blank',
+            component: BlankComponent
+        },
+        {
+            path: 'sub-menu-1',
+            component: SubMenuComponent
+        },
+        {
+            path: 'sub-menu-2',
+            component: BlankComponent
+        },
+        {
+            path: '',
+            component: DashboardComponent
+        }
+    ]
     },
     {
         path: 'register',
