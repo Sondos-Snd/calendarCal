@@ -19,7 +19,7 @@ export class MainComponent implements OnInit {
     ngOnInit() {
         this.ui = this.store.select('ui');
         this.renderer.removeClass(
-            document.querySelector('app-root'),
+            document.querySelector('app-main'),
             'login-page'
         );
         this.renderer.removeClass(

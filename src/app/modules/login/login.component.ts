@@ -29,7 +29,7 @@ export class LoginComponent implements OnInit, OnDestroy {
 
     ngOnInit() {
         this.renderer.addClass(
-            document.querySelector('app-root'),
+            document.querySelector('app-main'),
             'login-page'
         );
         this.loginForm = new UntypedFormGroup({
