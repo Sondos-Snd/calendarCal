@@ -18,14 +18,6 @@ export class MainComponent implements OnInit {
 
     ngOnInit() {
         this.ui = this.store.select('ui');
-        this.renderer.removeClass(
-            document.querySelector('app-main'),
-            'login-page'
-        );
-        this.renderer.removeClass(
-            document.querySelector('app-root'),
-            'register-page'
-        );
         this.renderer.addClass(
             document.querySelector('app-root'),
             'layout-fixed'
@@ -36,32 +28,32 @@ export class MainComponent implements OnInit {
                 if (menuSidebarCollapsed) {
                     this.renderer.removeClass(
                         document.querySelector('app-root'),
-                        'sidebar-open'
+                        'sidebar-collapse'
                     );
                     this.renderer.addClass(
                         document.querySelector('app-root'),
-                        'sidebar-collapse'
+                        'sidebar-open'
                     );
                 } else {
                     this.renderer.removeClass(
                         document.querySelector('app-root'),
-                        'sidebar-collapse'
+                        'sidebar-open'
                     );
                     this.renderer.addClass(
                         document.querySelector('app-root'),
-                        'sidebar-open'
+                        'sidebar-collapse'
                     );
                 }
 
                 if (controlSidebarCollapsed) {
                     this.renderer.removeClass(
                         document.querySelector('app-root'),
-                        'control-sidebar-slide-open'
+                        'control-sidebar-slide-collapse'
                     );
                 } else {
                     this.renderer.addClass(
                         document.querySelector('app-root'),
-                        'control-sidebar-slide-open'
+                        'control-sidebar-slide-collapse'
                     );
                 }
 
