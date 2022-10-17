@@ -1,7 +1,118 @@
 <app-header></app-header>
 
-<div class="content-wrapper">
-    <router-outlet></router-outlet>
+  <!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper">
+
+    <section class="content">
+        <div class="container-fluid">
+                <div class="row mt-2">
+                  <div class="col-sm">
+                    <div class="float-left">
+                        <button type="button" class="btn btn-warning mr-2">Aujourd'hui</button>
+                        <button type="button" class="btn btn-default mr-2"><</button>
+                        <button type="button" class="btn btn-default mr-2">></button>
+                    </div>
+                  </div>
+                  <div class="col-sm">
+                    
+                  </div>
+                  <div class="col-sm">
+                    <div class="btn-group justify-content-end">
+                        <a href="#" class="btn btn-warning active" aria-current="page">Day</a>
+                        <a href="#" class="btn btn-warning">Week</a>
+                        <a href="#" class="btn btn-warning">Month</a>
+                        <a href="#" class="btn btn-warning">Year</a>
+                        <a href="#" class="btn btn-warning">Agenda</a>
+                        <a href="#" class="btn btn-warning">Timeline</a>
+                      </div>
+                  </div>
+                </div>
+<br>
+
+
+
+      <!-- Default box -->
+      <div class="card">
+        <div class="card-body p-0">
+          <table class="table table-striped projects">
+              <thead>
+                  <tr>
+                      <th style="width: 20%">
+                         Team members
+                      </th>
+                  </tr>
+              </thead>
+              <tbody>
+                  <tr>
+                      <td>
+                          <a>
+                              Mark 
+                          </a>
+                          <br/>
+                          <small>
+                              Joined 01.01.2019
+                          </small>
+                      </td>
+                   
+                  </tr>
+                  <tr>
+                      <td>
+                          <a>
+                              John
+                          </a>
+                          <br/>
+                          <small>
+                              Joined 01.01.2015
+                          </small>
+                      </td>
+                     
+                  </tr>
+                  <tr>
+                      <td>
+                          <a>
+                              Sana
+                          </a>
+                          <br/>
+                          <small>
+                              Joined 01.01.2018
+                          </small>
+                      </td>
+                    
+                  </tr>
+                  <tr>
+                      <td>
+                          <a>
+                              Ines
+                          </a>
+                          <br/>
+                          <small>
+                              Joined 01.01.2021
+                          </small>
+                      </td>
+                     
+                  </tr>
+                  <tr>
+                      <td>
+                          <a>
+                              Sone
+                          </a>
+                          <br/>
+                          <small>
+                              Joined 01.01.2020
+                          </small>
+                      </td>
+                     
+                  </tr>
+                 
+              </tbody>
+          </table>
+        </div>
+        <!-- /.card-body -->
+      </div>
+        </div><!-- /.container-fluid -->
+      </section>
+      <!-- /.content -->
 </div>
+
 
 <app-footer></app-footer>
