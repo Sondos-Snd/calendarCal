@@ -11,10 +11,13 @@ import {Observable} from 'rxjs';
     styleUrls: ['./main.component.scss']
 })
 export class MainComponent implements OnInit {
-    @HostBinding('class') class = 'wrapper';
-    public ui: Observable<UiState>;
-
+    
+  
     constructor(private renderer: Renderer2, private store: Store<AppState>) {}
+
+@HostBinding('class') class = 'wrapper';
+public ui: Observable<UiState>;
+
 
     ngOnInit() {
         this.ui = this.store.select('ui');
@@ -75,4 +78,20 @@ export class MainComponent implements OnInit {
     onToggleMenuSidebar() {
         this.store.dispatch(new ToggleSidebarMenu());
     }
+
+    // var myApp = angular.module('myApp',[]);
+
+ MyCtrl($scope) {
+    
+    $scope.ingredients = [
+        {'name': 'potato'},
+        {'name': 'tomato'}
+    ];
+    
+    $scope.setSelected = function() {
+        $scope.selected = this.ingredient;
+        console.log($scope.selected);
+    };
+    
+}
 }
