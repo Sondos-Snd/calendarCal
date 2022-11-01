@@ -1,4 +1,4 @@
-import { Component, Output, EventEmitter, OnInit } from '@angular/core';
+import { Component, Output, EventEmitter, OnInit, Input } from '@angular/core';
 
 @Component({
   selector: 'app-update-event',
@@ -7,15 +7,7 @@ import { Component, Output, EventEmitter, OnInit } from '@angular/core';
 })
 export class UpdateEventComponent implements OnInit {
 
-  event=    {
-    index:2,
-    title: 'first event',
-    startEvent: '01/11/2022 10:00',
-    endEvent:
-      '01/11/2022 11:00',
-    resourceId: 1,
-    ressName:"Ress 1",
-  }
+  @Input() event:any;
 
   @Output() emitService = new EventEmitter();
 
@@ -23,6 +15,7 @@ export class UpdateEventComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    console.log(this.event);  
     
   }
 

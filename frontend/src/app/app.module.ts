@@ -34,6 +34,7 @@ import { UpdateEventComponent } from './calendar/event/update-event/update-event
     ReactiveFormsModule
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [ EventComponent ]
 })
 export class AppModule { }
