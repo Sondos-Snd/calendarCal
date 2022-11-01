@@ -1,0 +1,16 @@
+.event{
+    background-color: #739BD5;
+    color: white;
+    cursor:pointer;
+    width: 110px;
+    border: none;
+    text-align: left;
+}
+
+.noEvent{
+    background-color: transparent;
+    color: transparent;
+    cursor:pointer;
+    border: none;
+    width: 50px;
+}

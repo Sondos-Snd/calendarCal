@@ -1,0 +1,29 @@
+<main>
+  <div class="card mb-2">
+    <div class="card-body">
+
+      <div class="row text-center">
+        <div class="col">
+          <button type="button" class="btn btn-primary btn-sm" (click)="decaleDate(-1)">Prev </button>
+          <span style="width:2px ;color: white;">--</span>
+          <button type="button" class="btn btn-secondary btn-sm" (click)="decaleDate(1)" >Next</button>
+          <span style="width:2px ;color: white;">--</span>
+          <input type="date" name="datetime" (change)="updateCalendar()" [(ngModel)]="selectedDate"/>
+        </div>
+        <div class="col">
+          <div class="pull-right">
+            <button type="button" class="btn btn-primary btn-sm ml-3" (click)="today()">Aujourd'hui</button>
+            <span style="width:2px ;color: white;">--</span>
+            <button type="button" class="btn btn-default btn-sm"><a >Chrono / jour</a></button>
+            <span style="width:2px ;color: white;">--</span>
+            <button type="button" class="btn btn-secondary btn-sm"><a>Chrono / semaine</a></button>
+            <span style="width:2px ;color: white;">--</span>
+
+            <button type="button" class="btn btn-secondary btn-sm"><a >Agenda</a></button>
+          </div>
+        </div>
+      </div>
+      <app-calendar [selectedDate]="selectedDate"></app-calendar>
+    </div>
+  </div>
+</main>

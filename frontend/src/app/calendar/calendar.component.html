@@ -1,0 +1,30 @@
+<hr>
+<div class="table-responsive">
+  <table class="table ">
+    <thead>
+      <tr>
+        <th scope="col"></th>
+        <th scope="col" style="text-align:center">
+          <div #mydate >{{selectedDate}} </div>
+      <tr>
+        <th class="timed" *ngFor="let time of timeScale">{{time}}</th>
+      </tr>
+      </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let ress of resources">
+        <td id="{{ress.name}}" #ressRef>{{ress.name}}</td>
+        <td>
+      <tr>
+        <th class="widthed" *ngFor="let time of timeScale; let i=index">
+          <ng-container *ngFor="let event of events">
+            <app-event [event]="event" [ressRef]="ressRef.id" [index]="i"></app-event>
+          </ng-container>
+        </th>
+      </tr>
+      </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
