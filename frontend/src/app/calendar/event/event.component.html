@@ -33,9 +33,9 @@
   
   <div *ngIf="event.index==index  && event.ressName==ressRef ;then inEvent else noEvent"></div>
   <ng-template #inEvent>
-    <button class="event" (click)="open(mymodal,event,ressRef)" >{{event.title}}</button> 
+    <button class="event" (click)="open(mymodal)" >{{event.title}}</button> 
   </ng-template>                         
   <ng-template #noEvent>
-  <button class="noEvent" (click)="open(mymodal,event,ressRef)"></button>  
+  <button class="noEvent" (click)="open(mymodal)"></button>  
   </ng-template>              
              

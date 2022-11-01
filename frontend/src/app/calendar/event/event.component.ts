@@ -1,6 +1,7 @@
-import { Component, Input, OnInit, ViewChild } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
+import { UpdateEventComponent } from './update-event/update-event.component';
 
 @Component({
   selector: 'app-event',
@@ -12,9 +13,10 @@ export class EventComponent implements OnInit {
   @Input() event: any = {};
   @Input() ressRef: any ="";
   @Input() index: any ="";
-  @ViewChild('content') content: any;
 
-  closeResult: string = '';
+  itemList=["Ress 1","Ress 2"];
+
+  bsModalRef: BsModalRef;
 
   constructor(private modalService: NgbModal) { }
 
@@ -22,16 +24,14 @@ export class EventComponent implements OnInit {
 
   }
 
-  open(content:any,event:any,ress:any) {
+  open(content:any) {
+    const initialState = {
+      list: [
+        {"tag":'Count',"value":this.itemList.length}
+      ]
+    };
     const modalRef = this.modalService.open(content);
     modalRef.componentInstance.event = this.event;
-
   }
-
-
-  clickEvent(event:any){
-    this.content.open();
-  }
-
 
 }

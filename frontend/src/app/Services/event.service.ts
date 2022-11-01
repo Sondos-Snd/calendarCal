@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable, throwError } from 'rxjs';
-import { catchError, retry } from 'rxjs/operators';
+import { Observable} from 'rxjs';
 import * as moment from 'moment';
+
 
 const baseUrl = 'http://localhost:8081/api/events';
 
@@ -10,8 +10,6 @@ const baseUrl = 'http://localhost:8081/api/events';
   providedIn: 'root'
 })
 export class EventService {
-
-  baseUrl = 'http://localhost:8081/api/events';
 
   fullEvents=[
     {
@@ -54,21 +52,17 @@ export class EventService {
 
   constructor(private http: HttpClient) { }
 
-  getEvents(selectedDate:any) { 
+  public getEvents(selectedDate:any) { 
     return this.fullEvents.filter((obj) => {
       return moment(obj.startEvent.split(' ')[0]).isSame(moment(selectedDate));
     });
   }
 
-  getAll() {
-    // now returns an Observable of Config
-    return this.http.get<Event[]>(this.baseUrl);
+  public getAll() {
+    // now returns an Observable of Events
+    return this.http.get<Event[]>(baseUrl);
   }
 
-
-  public getEvent(): Observable<Event[]> {
-    return this.http.get<Event[]>(this.baseUrl);
-}
   // get(id): Observable<any> {
   //   return this.http.get(`${baseUrl}/${id}`);
   // }
