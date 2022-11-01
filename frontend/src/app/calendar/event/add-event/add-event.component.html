@@ -1,1 +1,31 @@
-<p>add-event works!</p>
+<ng-template #mymodal let-modal>
+    <div class="modal-header">
+      <h6 class="modal-title" id="modal-basic-title">Créer un événement: </h6>
+    </div>
+    <div class="modal-body">
+      <form>
+        <div class="form-group row">
+          <label for="staticEmail" class="col-sm-2 col-form-label"><b>Titre:</b></label>
+          <div class="col-sm-10">
+            <input type="text" readonly class="form-control-plaintext"  value="title">
+          </div>
+        </div>
+        <div class="form-group row">
+          <label for="inputPassword" class="col-sm-2 col-form-label"><b>Début:</b></label>
+          <div class="col-sm-10">
+            <input type="text" class="form-control" value="start">
+          </div>
+        </div>
+        <div class="form-group row">
+          <label for="inputPassword" class="col-sm-2 col-form-label"><b>Fin:</b></label>
+          <div class="col-sm-10">
+            <input type="text" class="form-control" value="end">
+          </div>
+        </div>
+      </form>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-sm btn-primary" (click)="modal.close('Save click')">Modifier</button>
+      <button type="button" class="btn btn-sm btn-danger" (click)="modal.close('Save click')">Supprimer</button>
+    </div>
+  </ng-template>

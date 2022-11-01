@@ -9,7 +9,6 @@ import { CalendarComponent } from './calendar/calendar.component';
 import { FormsModule } from '@angular/forms';
 import { EventComponent } from './calendar/event/event.component';
 import { SplitLastPipe } from './Pipes/split-last.pipe';
-import {ModalComponent} from './calendar/event/modal/modal.component'
 import { ReactiveFormsModule } from '@angular/forms';
 import { AddEventComponent } from './calendar/event/add-event/add-event.component';
 import { UpdateEventComponent } from './calendar/event/update-event/update-event.component';
