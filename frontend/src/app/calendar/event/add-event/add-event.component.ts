@@ -1,4 +1,4 @@
-import { Component, OnInit,EventEmitter, Output } from '@angular/core';
+import { Component, OnInit,EventEmitter, Output, Input } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { BsModalRef } from 'ngx-bootstrap/modal';
 
@@ -10,27 +10,20 @@ import { BsModalRef } from 'ngx-bootstrap/modal';
 })
 export class AddEventComponent implements OnInit {
 
-  event=    {
-    index:2,
-    title: 'first event',
-    startEvent: '01/11/2022 10:00',
-    endEvent:
-      '01/11/2022 11:00',
-    resourceId: 1,
-    ressName:"Ress 1",
-  }
-
+  @Input() resource:any;
+  @Input() date:any;
   @Output() emitService = new EventEmitter();
 
   constructor() {
   }
 
   ngOnInit(): void {
+    console.log(this.resource); 
     
   }
 
   emitEvent() {
-      this.emitService.next(this.event)
+      this.emitService.next(this.resource)
   }
 
 

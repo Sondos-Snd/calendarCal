@@ -11,6 +11,7 @@ td {
 }
 
 .widthed{
-    width: 110px
+    width: 110px;
+    cursor:pointer;
 }
 

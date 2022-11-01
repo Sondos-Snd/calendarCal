@@ -17,7 +17,7 @@
         <td id="{{ress.name}}" #ressRef>{{ress.name}}</td>
         <td>
       <tr>
-        <th class="widthed" *ngFor="let time of timeScale; let i=index">
+        <th class="widthed" *ngFor="let time of timeScale; let i=index" (click)="openCreateModal(ressRef.id,selectedDate)">
           <ng-container *ngFor="let event of events">
             <app-event [event]="event" [ressRef]="ressRef.id" [index]="i"></app-event>
           </ng-container>

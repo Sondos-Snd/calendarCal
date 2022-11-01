@@ -10,7 +10,6 @@
 .noEvent{
     background-color: transparent;
     color: transparent;
-    cursor:pointer;
     border: none;
-    width: 50px;
+    width: 120px;
 }

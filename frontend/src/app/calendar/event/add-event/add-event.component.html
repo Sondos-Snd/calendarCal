@@ -7,7 +7,7 @@
         <div class="form-group row">
             <label class="col-sm-2 col-form-label mb-2">Ressource: </label>
             <div class="col-sm-10">
-              <input type="text" class="form-control" >
+              <input type="text" readonly class="form-control" value="{{resource}}" >
             </div>
           </div>
           <br>
@@ -15,6 +15,13 @@
             <label class="col-sm-2 col-form-label mb-2">Titre:</label>
             <div class="col-sm-10">
               <input type="text" class="form-control" >
+            </div>
+          </div>
+          <br>
+          <div class="form-group row">
+            <label class="col-sm-2 col-form-label mb-2">Date:</label>
+            <div class="col-sm-10">
+              <input type="text" readonly class="form-control" value="{{date}}" >
             </div>
           </div>
           <br>
@@ -36,5 +43,5 @@
   </div>
   <div class="modal-footer">
     <button type="button" class="btn btn-sm btn-primary" (click)="emitEvent()">Ajouter</button>
-    <button type="button" class="btn btn-sm btn-danger" >Supprimer</button>
+    <button type="button" class="btn btn-sm btn-danger" >Annuler</button>
   </div>

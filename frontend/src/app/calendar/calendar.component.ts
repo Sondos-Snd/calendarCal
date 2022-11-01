@@ -5,6 +5,8 @@ import { ActivatedRoute } from '@angular/router';
 import { EventService } from '../Services/event.service';
 import { ResourceService } from '../Services/resource.service';
 import { Observable } from 'rxjs';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { AddEventComponent } from './event/add-event/add-event.component';
 
 @Component({
   selector: 'app-calendar',
@@ -20,7 +22,7 @@ export class CalendarComponent implements OnInit,OnChanges {
   events: any[] = [];
   resources : any[] = [];
   
-  constructor(private eventService:EventService, private resourceService:ResourceService,private route: Router,private actRoute: ActivatedRoute) { 
+  constructor(private eventService:EventService,private modalService: NgbModal, private resourceService:ResourceService,private route: Router,private actRoute: ActivatedRoute) { 
     }
 
   ngOnInit(): void {    
@@ -34,6 +36,15 @@ export class CalendarComponent implements OnInit,OnChanges {
   refetchData(selectedDate:any){
     this.events = this.eventService.getEvents(selectedDate);
     this.resources = this.resourceService.getResources(selectedDate);
+  }
+
+  openCreateModal(resource:string,date:string) {
+    var modalRef = this.modalService.open(AddEventComponent); 
+    modalRef.componentInstance.resource = resource;
+    modalRef.componentInstance.date = date;
+    modalRef.componentInstance.emitService.subscribe((emmitedValue:any) => {
+        console.log(emmitedValue);        
+    });
   }
 
 

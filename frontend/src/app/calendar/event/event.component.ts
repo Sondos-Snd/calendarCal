@@ -29,12 +29,4 @@ export class EventComponent implements OnInit {
         console.log(emmitedValue);        
     });
 }
-
-    openCreateModal(resource:string,index:number) {
-      var modalRef = this.modalService.open(AddEventComponent); 
-      modalRef.componentInstance.user = resource;
-      modalRef.componentInstance.emitService.subscribe((emmitedValue:any) => {
-          console.log(emmitedValue);        
-      });
-    }
 }
