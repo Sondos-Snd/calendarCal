@@ -3,13 +3,12 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 import { BsModalRef } from 'ngx-bootstrap/modal';
 
 
-
 @Component({
-  selector: 'app-modal',
-  templateUrl: './modal.component.html',
-  styleUrls: ['./modal.component.css']
+  selector: 'app-add-event',
+  templateUrl: './add-event.component.html',
+  styleUrls: ['./add-event.component.css']
 })
-export class ModalComponent implements OnInit { 
+export class AddEventComponent implements OnInit {
 
   itemform:FormGroup;
   numberOfItems = 0;
