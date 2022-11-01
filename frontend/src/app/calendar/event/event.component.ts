@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModal, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
+import { AddEventComponent } from './add-event/add-event.component';
 import { UpdateEventComponent } from './update-event/update-event.component';
 
 @Component({
@@ -14,24 +15,23 @@ export class EventComponent implements OnInit {
   @Input() ressRef: any ="";
   @Input() index: any ="";
 
-  itemList=["Ress 1","Ress 2"];
-
-  bsModalRef: BsModalRef;
-
   constructor(private modalService: NgbModal) { }
 
   ngOnInit(): void {
 
   }
 
-  open(content:any) {
-    const initialState = {
-      list: [
-        {"tag":'Count',"value":this.itemList.length}
-      ]
-    };
-    const modalRef = this.modalService.open(content);
-    modalRef.componentInstance.event = this.event;
-  }
+  openEditModal(event:Event,index:number) {
+    var modalRef = this.modalService.open(UpdateEventComponent);
+    modalRef.componentInstance.emitService.subscribe((emmitedValue:any) => {
+        console.log(emmitedValue);        
+    });
+}
 
+openCreateModal(resource:string,index:number) {
+  var modalRef = this.modalService.open(AddEventComponent); 
+  modalRef.componentInstance.emitService.subscribe((emmitedValue:any) => {
+      console.log(emmitedValue);        
+  });
+}
 }

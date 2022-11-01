@@ -1,6 +1,4 @@
-import { Component, OnInit,EventEmitter } from '@angular/core';
-import { FormBuilder } from '@angular/forms';
-import { BsModalRef } from 'ngx-bootstrap/modal'
+import { Component, Output, EventEmitter, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-update-event',
@@ -9,30 +7,28 @@ import { BsModalRef } from 'ngx-bootstrap/modal'
 })
 export class UpdateEventComponent implements OnInit {
 
-  itemform:any;
-  numberOfItems = 0;
-  list: any[] = [];
-  public event: EventEmitter<any> = new EventEmitter();
-  
-  constructor(private formBuilder: FormBuilder, public bsModalRef: BsModalRef) {
-   
+  event=    {
+    index:2,
+    title: 'first event',
+    startEvent: '01/11/2022 10:00',
+    endEvent:
+      '01/11/2022 11:00',
+    resourceId: 1,
+    ressName:"Ress 1",
   }
 
-  ngOnInit() {
-    this.itemform = this.formBuilder.group({
-      name: ""
-    })
+  @Output() emitService = new EventEmitter();
+
+  constructor() {
   }
 
-  saveToList(form:any) {
-    if(form.value){
-      this.triggerEvent(form.value.name);
-      this.bsModalRef.hide();
-    }
+  ngOnInit(): void {
     
   }
 
-  triggerEvent(item: string) {
-    this.event.emit({ data: item , res:200  });
+  emitEvent() {
+      this.emitService.next(this.event)
   }
+
+
 }
