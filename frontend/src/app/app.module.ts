@@ -12,6 +12,8 @@ import { SplitLastPipe } from './Pipes/split-last.pipe';
 import { ReactiveFormsModule } from '@angular/forms';
 import { AddEventComponent } from './calendar/event/add-event/add-event.component';
 import { UpdateEventComponent } from './calendar/event/update-event/update-event.component';
+import { SearchPipe } from './Pipes/search.pipe';
+import { DataTablesModule } from 'angular-datatables';
 
 
 @NgModule({
@@ -22,6 +24,7 @@ import { UpdateEventComponent } from './calendar/event/update-event/update-event
     SplitLastPipe,
     AddEventComponent,
     UpdateEventComponent,
+    SearchPipe,
     
   ],
   imports: [
@@ -31,7 +34,8 @@ import { UpdateEventComponent } from './calendar/event/update-event/update-event
     AppRoutingModule,
     HttpClientModule,
     RouterModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    DataTablesModule
   ],
   providers: [],
   bootstrap: [AppComponent],

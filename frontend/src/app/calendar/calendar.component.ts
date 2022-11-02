@@ -1,12 +1,13 @@
-import { Component, Input, OnChanges , SimpleChanges,OnInit} from '@angular/core';
+import { Component, Input, OnChanges , SimpleChanges,OnInit,ViewChild} from '@angular/core';
 import * as moment from 'moment';
 import { Router } from '@angular/router';
 import { ActivatedRoute } from '@angular/router';
 import { EventService } from '../Services/event.service';
 import { ResourceService } from '../Services/resource.service';
-import { Observable } from 'rxjs';
+import { DataTablesModule } from 'angular-datatables';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { AddEventComponent } from './event/add-event/add-event.component';
+import { DataTableDirective } from 'angular-datatables';
 
 @Component({
   selector: 'app-calendar',
@@ -20,16 +21,17 @@ export class CalendarComponent implements OnInit,OnChanges {
   @Input() calendarFormat: any='perDay';
   @Input() eventTypes: any='';
 
+  // @ViewChild('eventEelement') eventEelement; 
+
   todayDate=moment().format('D/M/YYYY');
   events: any[] = [];
   resources : any[] = [];
-  
+
   constructor(private eventService:EventService,private modalService: NgbModal, private resourceService:ResourceService,private route: Router,private actRoute: ActivatedRoute) { 
     }
 
   ngOnInit(): void {    
     this.refetchData(this.todayDate);
-    console.log(this.selectedDate);   
     
   }
 

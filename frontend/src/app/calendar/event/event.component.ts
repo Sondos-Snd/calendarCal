@@ -13,6 +13,7 @@ export class EventComponent implements OnInit {
   @Input() event: any = {};
   @Input() ressRef: any ="";
   @Input() index: any ="";
+  @Input() closebutton: any='';
 
   constructor(private modalService: NgbModal) { }
 
@@ -20,11 +21,12 @@ export class EventComponent implements OnInit {
 
   }
 
-  openEditModal(event:Event,index:number) { 
+  openEditModal(event:Event,index:number) {
     var modalRef = this.modalService.open(UpdateEventComponent);
     modalRef.componentInstance.event = event;
     modalRef.componentInstance.passEntry.subscribe((receivedEntry:any) => {
       console.log(receivedEntry);
       })
 }
+
 }
