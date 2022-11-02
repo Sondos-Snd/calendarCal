@@ -76,21 +76,46 @@ export class EventService {
   //   return this.http.get(`${baseUrl}/${id}`);
   // }
 
+  getMonths(month:any,year:any){
+    var ar = [];
+    var start = moment(year+"-"+month,"YYYY-MMM");
+    for(var end = moment(start).add(1,'month');  start.isBefore(end); start.add(1,'day')){
+        ar.push(start.format('DD/MM/YYYY HH:mm').toString());
+    }
+    return ar;
+}
+
   create(data:any){
     data=JSON.parse(data);
-    console.log(data);
-    
-    let obj={
-      index:0,
-      title: data["Title"],
-      startEvent: moment(data["startEvent"]).format('DD/MM/YYYY HH:mm').toString(),
-      endEvent:
-      moment(data["startEvent"]).format('DD/MM/YYYY HH:mm').toString(),
-      resourceId: 3,
-      ressName:"Ress 1",
-      type:'breakEvent'
-    }  
-    this.fullEvents.push(obj);    
+    console.log(data['Reccurrent']);
+    if(data['Reccurrent']){
+      this.getMonths('Nov',2022).forEach( (element) => {
+        let obj={
+          index:0,
+          title: data["Title"],
+          startEvent: element,
+          endEvent:
+          element,
+          resourceId: 3,
+          ressName:"Ress 1",
+          type:'reccurrentEvent'
+        }  
+        this.fullEvents.push(obj);
+    });
+
+    }else{
+      let obj={
+        index:0,
+        title: data["Title"],
+        startEvent: moment(data["startEvent"]).format('DD/MM/YYYY HH:mm').toString(),
+        endEvent:
+        moment(data["startEvent"]).format('DD/MM/YYYY HH:mm').toString(),
+        resourceId: 3,
+        ressName:"Ress 1",
+        type:'breakEvent'
+      }  
+      this.fullEvents.push(obj);
+    }    
   }
 
   // update(id, data): Observable<any> {
