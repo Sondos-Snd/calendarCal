@@ -12,8 +12,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 export class AppComponent implements OnInit {
 
   selectedDate : any= moment().format("DD/MM/YYYY");
-  calendarFormat: any= 'perDay'; 
-  dateFormat: string= 'DD/MM/YYYY'; 
+  calendarFormat: any= 'perDay';  
   eventTypes=[
     {'customClass':'workEvent',
     'color':'#739BD5',

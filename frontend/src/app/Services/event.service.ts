@@ -20,6 +20,7 @@ export class EventService {
         '02/11/2022 11:00',
       resourceId: 1,
       ressName:"Ress 1",
+      type:'workEvent'
     },
     {
       index:3,
@@ -29,6 +30,7 @@ export class EventService {
         '02/11/2022 12:00',
       resourceId: 2,
       ressName:"Ress 2",
+      type:'breakEvent'
     },
     {
       index:1,
@@ -38,6 +40,7 @@ export class EventService {
         '02/11/2022 10:00',
       resourceId: 3,
       ressName:"Ress 3",
+      type:'workEvent'
     },
     {
       index:6,
@@ -47,6 +50,7 @@ export class EventService {
         '02/11/2022 15:00',
       resourceId: 3,
       ressName:"Ress 3",
+      type:'reccurrentEvent'
     },
   ];
 

@@ -13,3 +13,19 @@
     border: none;
     width: 120px;
 }
+
+.workEvent{
+    background-color: #739BD5;
+}
+.reccurrentEvent{
+    background-color: #da5461;;
+}
+.breakEvent{
+    background-color: #41af7c;
+}
+.x-icon{
+    right: -5px;
+    position: relative;
+    top: -11px;
+    zoom: 50%;
+  }
