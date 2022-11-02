@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { NgbModal, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { ViewChild } from '@angular/core';
 import { UpdateEventComponent } from './update-event/update-event.component';
@@ -15,6 +15,8 @@ export class EventComponent implements OnInit {
   @Input() index: any ="";
   @Input() closebutton: any='';
 
+  @Output() passEntry: EventEmitter<any> = new EventEmitter();
+
   constructor(private modalService: NgbModal) { }
 
   ngOnInit(): void {
@@ -25,7 +27,9 @@ export class EventComponent implements OnInit {
     var modalRef = this.modalService.open(UpdateEventComponent);
     modalRef.componentInstance.event = event;
     modalRef.componentInstance.passEntry.subscribe((receivedEntry:any) => {
-      console.log(receivedEntry);
+      console.log('recived!');      
+      console.log(receivedEntry.data);
+      this.passEntry.emit(receivedEntry.data);
       })
 }
 

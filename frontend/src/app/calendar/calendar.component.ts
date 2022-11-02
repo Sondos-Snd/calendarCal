@@ -1,7 +1,5 @@
-import { Component, Input, OnChanges , SimpleChanges,OnInit,ViewChild} from '@angular/core';
+import { Component, Input, OnChanges ,OnInit} from '@angular/core';
 import * as moment from 'moment';
-import { Router } from '@angular/router';
-import { ActivatedRoute } from '@angular/router';
 import { EventService } from '../Services/event.service';
 import { ResourceService } from '../Services/resource.service';
 import { DataTablesModule } from 'angular-datatables';
@@ -27,15 +25,14 @@ export class CalendarComponent implements OnInit,OnChanges {
   events: any[] = [];
   resources : any[] = [];
 
-  constructor(private eventService:EventService,private modalService: NgbModal, private resourceService:ResourceService,private route: Router,private actRoute: ActivatedRoute) { 
+  constructor(private eventService:EventService,private modalService: NgbModal, private resourceService:ResourceService) { 
     }
 
   ngOnInit(): void {    
-    this.refetchData(this.todayDate);
-    
+    this.refetchData(this.todayDate);    
   }
 
-  ngOnChanges(changes:SimpleChanges){
+  ngOnChanges(){
     this.refetchData(this.selectedDate)
   }
 
@@ -48,9 +45,11 @@ export class CalendarComponent implements OnInit,OnChanges {
     var modalRef = this.modalService.open(AddEventComponent); 
     modalRef.componentInstance.resource = resource;
     modalRef.componentInstance.date = date;
-    modalRef.componentInstance.emitService.subscribe((emmitedValue:any) => {
-        console.log(emmitedValue);        
-    });
+    modalRef.componentInstance.passEntry.subscribe((receivedEntry:any) => {
+      this.refetchData(this.selectedDate);
+      console.log(receivedEntry.data);
+      
+      })
   }
 
 

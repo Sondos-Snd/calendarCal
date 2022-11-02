@@ -1,6 +1,7 @@
 import { Component, OnInit,EventEmitter, Output, Input } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { BsModalRef } from 'ngx-bootstrap/modal';
+import { EventService } from 'src/app/Services/event.service';
 
 
 @Component({
@@ -14,16 +15,32 @@ export class AddEventComponent implements OnInit {
   @Input() date:any;
   @Output() passEntry: EventEmitter<any> = new EventEmitter();
 
-  constructor() {
+  preview: string = '';
+
+  constructor(private eventService:EventService) {
+  }
+
+  eventForm = new FormGroup({
+    Title: new FormControl(''),
+    Resource: new FormControl('Ress 1'),
+    eventType: new FormControl('breakEvent'),
+    Reccurrent: new FormControl(''),
+    startEvent: new FormControl(''),
+    endEvent: new FormControl(''),
+  }); 
+  
+
+  save() {
+    this.eventService.create((JSON.stringify(this.eventForm.value)));   
+    this.passEntry.emit({ data: this.eventService.getEvents() , res:200  });  
   }
 
   ngOnInit(): void {
-    console.log(this.resource); 
     
   }
 
   passBack() {
-    this.passEntry.emit("passed back");
+     
     }
 
 }

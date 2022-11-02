@@ -56,10 +56,15 @@ export class EventService {
 
   constructor(private http: HttpClient) { }
 
-  public getEvents(selectedDate:any) { 
-    return this.fullEvents.filter((obj) => {
-      return moment(obj.startEvent.split(' ')[0]).isSame(moment(selectedDate));
-    });
+  public getEvents(selectedDate?:any) { 
+    if(selectedDate){
+      return this.fullEvents.filter((obj) => {
+        return moment(obj.startEvent.split(' ')[0]).isSame(moment(selectedDate));
+      });
+    }else{
+      return this.fullEvents;
+    }
+
   }
 
   public getAll() {
@@ -71,8 +76,21 @@ export class EventService {
   //   return this.http.get(`${baseUrl}/${id}`);
   // }
 
-  create(data:any): Observable<any> {
-    return this.http.post(baseUrl, data);
+  create(data:any){
+    data=JSON.parse(data);
+    console.log(data);
+    
+    let obj={
+      index:0,
+      title: data["Title"],
+      startEvent: moment(data["startEvent"]).format('DD/MM/YYYY HH:mm').toString(),
+      endEvent:
+      moment(data["startEvent"]).format('DD/MM/YYYY HH:mm').toString(),
+      resourceId: 3,
+      ressName:"Ress 1",
+      type:'breakEvent'
+    }  
+    this.fullEvents.push(obj);    
   }
 
   // update(id, data): Observable<any> {
