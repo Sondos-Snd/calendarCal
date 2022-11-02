@@ -11,30 +11,54 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class AppComponent implements OnInit {
 
-  prevDate='';
-  selectedDate : any= ''; 
+  selectedDate : any= moment().format("DD/MM/YYYY");
+  calendarFormat: any= 'perDay'; 
+  dateFormat: string= 'DD/MM/YYYY'; 
+  eventTypes=[
+    {'customClass':'workEvent',
+    'color':'#739BD5',
+    'isReccurrent':false
+    },
+    {'customClass':'reccurrentEvent',
+    'color':'#739BD5',
+    'isReccurrent':true
+    },
+    {'customClass':'breakEvent',
+    'color':'#739BD5',
+    'isReccurrent':false
+      }
+    ]
+  slotInterval: number= 60;
+  openTime: string= '8:00';
+  closeTime: string= '20:00';
+  timeScale: any= this.getTimeScale(this.slotInterval,this.openTime,this.closeTime)
 
-  constructor(private route: Router,private actRoute: ActivatedRoute) {
+  constructor(private route: Router,private actRoute: ActivatedRoute) {    
       
   }
   ngOnInit(): void {
 
-    let fetchedDate = this.actRoute.snapshot.paramMap.get('date'); 
+    this.updateSelectedDate();
 
+  }
+
+  updateSelectedDate(){
+    let fetchedDate = this.actRoute.snapshot.paramMap.get('date'); 
+    
     if (this.isDate(fetchedDate)) {     
       this.selectedDate=fetchedDate ;     
+     } else {    
+      this.selectedDate = moment().format("DD/MM/YYYY");  
      }
-     else {      
-      this.selectedDate = moment().format('DD/MM/YYYY');   
-     }  
   }
   
+  
   decaleDate(dayNumber:any){
-    this.selectedDate=moment(this.selectedDate, "DD/MM/YYYY").add(dayNumber, 'days').format('DD/MM/YYYY');
+    this.selectedDate=moment(this.selectedDate, "DD/MM/YYYY").add(dayNumber, 'days').format("DD/MM/YYYY");
   }
 
   today(){
-    this.selectedDate=moment().format('DD/MM/YYYY'); 
+    this.selectedDate=moment().format("DD/MM/YYYY"); 
   }
 
   onChangeDate(selectedDate:any){    
@@ -58,5 +82,28 @@ export class AppComponent implements OnInit {
       return false
     }}
 
+    getTimeScale(slotInterval:number,openTime:string,closeTime:string){
+      let x = {
+        slotInterval: slotInterval,
+        openTime: openTime,
+        closeTime: closeTime
+      };
+
+      let startTime = moment(x.openTime, "HH:mm");
+      let endTime = moment(x.closeTime, "HH:mm");
+      let allTimes = [];
+
+      while (startTime < endTime) {
+        allTimes.push(startTime.format("HH:mm")); 
+        startTime.add(x.slotInterval, 'minutes');
+      }
+
+      return allTimes;
+    }
+
+    formatCalendar(format:string){
+      // perDay , perWeek, agenda
+      this.calendarFormat=format;
+    }
 
 }

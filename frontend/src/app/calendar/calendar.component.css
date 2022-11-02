@@ -1,17 +1,25 @@
-th {
+th,td {
     text-align: left;
-}
-td {
-    text-align: left;
-    
 }
 
 .timed{
-    width: 110px;background-color: #6c757d; color: white;
+    width: 110px;
+    background-color: #6c757d; 
+    color: white;
 }
 
 .widthed{
     width: 110px;
     cursor:pointer;
+}
+
+.workEvent{
+    background-color: #739BD5;
+}
+.reccurrentEvent{
+    background-color: #739BD5;
+}
+.breakEvent{
+    background-color: #739BD5;
 }
 

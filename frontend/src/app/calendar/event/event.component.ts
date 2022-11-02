@@ -1,8 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { NgbModal, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
-import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
-import { json } from 'stream/consumers';
-import { AddEventComponent } from './add-event/add-event.component';
+import { ViewChild } from '@angular/core';
 import { UpdateEventComponent } from './update-event/update-event.component';
 
 @Component({
@@ -25,8 +23,8 @@ export class EventComponent implements OnInit {
   openEditModal(event:Event,index:number) { 
     var modalRef = this.modalService.open(UpdateEventComponent);
     modalRef.componentInstance.event = event;
-    modalRef.componentInstance.emitService.subscribe((emmitedValue:any) => {
-        console.log(emmitedValue);        
-    });
+    modalRef.componentInstance.passEntry.subscribe((receivedEntry:any) => {
+      console.log(receivedEntry);
+      })
 }
 }

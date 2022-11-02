@@ -16,9 +16,11 @@ import { AddEventComponent } from './event/add-event/add-event.component';
 export class CalendarComponent implements OnInit,OnChanges {
 
   @Input() selectedDate: any ='';
+  @Input() timeScale: any ='';
+  @Input() calendarFormat: any='perDay';
+  @Input() eventTypes: any='';
 
-  todayDtae=moment().format('D/M/YYYY');
-  timeScale: string[] =["08:00","09:00","10:00","11:00","12:00","13:00","14:00","15:00","16:00","17:00","18:00","19:00"];
+  todayDate=moment().format('D/M/YYYY');
   events: any[] = [];
   resources : any[] = [];
   
@@ -26,19 +28,21 @@ export class CalendarComponent implements OnInit,OnChanges {
     }
 
   ngOnInit(): void {    
-    this.refetchData(this.todayDtae);
+    this.refetchData(this.todayDate);
+    console.log(this.selectedDate);   
+    
   }
 
   ngOnChanges(changes:SimpleChanges){
     this.refetchData(this.selectedDate)
   }
 
-  refetchData(selectedDate:any){
+  refetchData(selectedDate:any){    
     this.events = this.eventService.getEvents(selectedDate);
     this.resources = this.resourceService.getResources(selectedDate);
   }
 
-  openCreateModal(resource:string,date:string) {
+  openCreateModal(resource:string,date:string) {    
     var modalRef = this.modalService.open(AddEventComponent); 
     modalRef.componentInstance.resource = resource;
     modalRef.componentInstance.date = date;

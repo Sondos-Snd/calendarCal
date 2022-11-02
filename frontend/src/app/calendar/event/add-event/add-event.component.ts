@@ -12,7 +12,7 @@ export class AddEventComponent implements OnInit {
 
   @Input() resource:any;
   @Input() date:any;
-  @Output() emitService = new EventEmitter();
+  @Output() passEntry: EventEmitter<any> = new EventEmitter();
 
   constructor() {
   }
@@ -22,9 +22,8 @@ export class AddEventComponent implements OnInit {
     
   }
 
-  emitEvent() {
-      this.emitService.next(this.resource)
-  }
-
+  passBack() {
+    this.passEntry.emit("passed back");
+    }
 
 }
