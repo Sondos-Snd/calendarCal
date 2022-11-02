@@ -118,6 +118,10 @@ export class EventService {
     }    
   }
 
+  erase(data:any){
+
+  }
+
   // update(id, data): Observable<any> {
   //   return this.http.put(`${baseUrl}/${id}`, data);
   // }

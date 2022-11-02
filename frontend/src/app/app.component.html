@@ -13,13 +13,11 @@
             <button type="button" class="btn btn-primary btn-sm m-2" (click)="today()">Aujourd'hui</button>
             <button type="button" class="btn btn-default btn-sm m-2" (click)="formatCalendar('perDay')"><a >Chrono / jour</a></button>
             <button type="button" class="btn btn-secondary btn-sm m-2" (click)="formatCalendar('perWeek')"><a>Chrono / semaine</a></button>
-
-
             <button type="button" class="btn btn-secondary btn-sm" (click)="formatCalendar('agenda')"><a >Agenda</a></button>
           </div>
         </div>
       </div>
-      <app-calendar [selectedDate]="selectedDate" [timeScale]="timeScale" [calendarFormat]="calendarFormat" [eventTypes]="eventTypes"></app-calendar>
+        <app-calendar [selectedDate]="selectedDate" [timeScale]="timeScale" [calendarFormat]="calendarFormat" [eventTypes]="eventTypes"></app-calendar>
     </div>
   </div>
 </main>

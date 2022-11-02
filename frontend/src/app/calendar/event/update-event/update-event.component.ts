@@ -1,4 +1,7 @@
 import { Component, Output, EventEmitter, OnInit, Input } from '@angular/core';
+import { FormControl, FormGroup } from '@angular/forms';
+import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import { EventService } from 'src/app/Services/event.service';
 
 @Component({
   selector: 'app-update-event',
@@ -11,16 +14,35 @@ export class UpdateEventComponent implements OnInit {
 
   @Output() emitService = new EventEmitter();
 
-  constructor() {
+  constructor(public activeModal: NgbActiveModal,private eventService:EventService) {
   }
+  eventForm = new FormGroup({
+    Title: new FormControl(''),
+    Resource: new FormControl('Ress 1'),
+    eventType: new FormControl('breakEvent'),
+    Reccurrent: new FormControl(''),
+    startEvent: new FormControl(''),
+    endEvent: new FormControl(''),
+  }); 
 
   ngOnInit(): void {
-    console.log(this.event);  
-    
+
   }
 
-  emitEvent() {
-      this.emitService.next(this.event)
+  closeCustom() {
+    this.activeModal.close();
+  } 
+
+  save() {
+    this.eventService.create((JSON.stringify(this.eventForm.value)));  
+    this.emitService.emit({ data: this.eventService.getEvents() , res:200  });  
+    this.activeModal.close();
+  }
+
+  Erase(){
+    this.eventService.erase((JSON.stringify(this.eventForm.value)));  
+    this.emitService.emit({ data: this.eventService.getEvents() , res:200  });  
+    this.activeModal.close();
   }
 
 

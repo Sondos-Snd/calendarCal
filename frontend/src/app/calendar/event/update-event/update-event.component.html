@@ -1,29 +1,69 @@
-    <div class="modal-header">
-      <h6 class="modal-title" id="modal-basic-title">Modifier l'événement: </h6>
-    </div>
-    <div class="modal-body">
-      <form>
-        <div class="form-group row">
-          <label for="staticEmail" class="col-sm-2 col-form-label mb-2"><b>Titre:</b></label>
-          <div class="col-sm-10">
-            <input type="text" readonly class="form-control-plaintext"  value="{{event.title}}">
+    <div>
+      <div class="modal-header">
+        <h6 class="modal-title" id="modal-basic-title">Ajouter un événement: </h6>    
+        <span (click)="closeCustom()" class="btn btn-default">x</span>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="eventForm" (ngSubmit)="save()">
+          <div class="mb-3">
+            <label for="Title" class="form-label">Titre:</label>
+            <input
+              type="text"
+              class="form-control"
+              id="Title"
+              formControlName="Title"
+              placeholder="{{event.title}}"
+            />
           </div>
-        </div>
-        <div class="form-group row">
-          <label class="col-sm-2 col-form-label mb-2"><b>Début:</b></label>
-          <div class="col-sm-10">
-            <input type="text" class="form-control" value="{{event.startEvent | splitLast:' '}}">
+          <div class="mb-3">
+            <label for="Resource" class="form-label">Ressource: </label>
+            <input
+              type="text"
+              class="form-control"
+              id="Resource"
+              formControlName="Resource"
+              placeholder="{{event.resource}}"
+            />
           </div>
-        </div>
-        <div class="form-group row">
-          <label class="col-sm-2 col-form-label mb-2"><b>Fin:</b></label>
-          <div class="col-sm-10">
-            <input type="text" class="form-control" value="{{event.endEvent | splitLast:' '}}">
+          <div class="mb-3">
+            <label for="eventType" class="form-label">Type: </label>
+            <select class="form-select" id="eventType" formControlName="eventType">
+              <option value="1">Travail</option>
+              <option value="2">Pause</option>
+              <option value="3">Déjeuner</option>
+            </select>
+            <input class="form-check-input m-2" type="checkbox" id="Reccurrent" formControlName="Reccurrent">
+            <label class="form-check-label m-2" for="Reccurrent">Recurrent</label>
           </div>
-        </div>
-      </form>
-    </div>
-    <div class="modal-footer">
-      <button type="button" class="btn btn-sm btn-primary" (click)="emitEvent()">Modifier</button>
-      <button type="button" class="btn btn-sm btn-danger" >Annuler</button>
+          <div class="mb-3">
+            <label for="lastName" class="form-label">Début: </label>
+            <input
+              type="datetime-local"
+              class="form-control"
+              id="startEvent"
+              formControlName="startEvent"
+              value="{{event.startEvent | splitLast:' '}}"
+            />
+          </div>
+          <div class="mb-3">
+            <label for="lastName" class="form-label">Fin: </label>
+            <input
+              type="datetime-local"
+              class="form-control"
+              id="endEvent"
+              formControlName="endEvent"
+              value="{{event.endEvent | splitLast:' '}}"
+            />
+          </div>
+          <div class="row">
+            <div class="col">
+              <div class="modal-footer">
+                <button type="button" class="btn btn-sm btn-primary" >Modifier</button>
+                <button type="button" class="btn btn-sm btn-danger" (click)="Erase()">Annuler</button>
+              </div>
+            </div>
+        </div>      
+        </form>
+      </div>
+    
     </div>

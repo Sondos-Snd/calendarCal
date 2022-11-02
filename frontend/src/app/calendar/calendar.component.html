@@ -1,31 +1,69 @@
 <hr>
 <div class="table-responsive">
-  <table datatable class="table table-striped row-border hover"  >
+  <table datatable class="table table-striped row-border hover">
     <thead>
-      <tr>
-        <th scope="col"></th>
-        <th scope="col" style="text-align:center">
-          <div #mydate >{{selectedDate}} </div>
-      <tr>
-        <th class="timed" *ngFor="let time of timeScale">{{time}}</th>
-      </tr>
-      </th>
-      </tr>
+      <ng-container *ngIf="calendarFormat=='perDay'">
+        <tr>
+          <th scope="col"></th>
+          <th scope="col" style="text-align:center">
+            <div #mydate>{{selectedDate}} </div>
+        <tr>
+          <th class="timed" *ngFor="let time of timeScale">{{time}}</th>
+        </tr>
+        </th>
+        </tr>
+      </ng-container>
+      <ng-container *ngIf="calendarFormat=='perWeek'">
+        <table>
+          <tr style="text-align:center">
+            <th scope="col">
+            <th style="padding:2.5px; text-align:center" colspan="11">{{selectedDate}}
+
+          <tr>
+            <th class="timed" *ngFor="let time of timeScale">{{time}}</th>
+          </tr>
+          <th scope="col">
+          <th style="padding:2.5px; text-align:center" colspan="11">{{selectedDate}}
+
+            <tr>
+              <th class="timed" *ngFor="let time of timeScale">{{time}}</th>
+            </tr>
+          </th>
+          </tr>
+        </table>
+
+      </ng-container>
     </thead>
     <tbody>
       <tr *ngFor="let ress of resources">
         <td id="{{ress.name}}" #ressRef>{{ress.name}}</td>
         <td>
       <tr>
-        <th class="widthed" *ngFor="let time of timeScale; let i=index" (click)="openCreateModal(ressRef.id,selectedDate)">
+        <ng-container *ngIf="calendarFormat=='perDay'">
+          <th class="widthed" *ngFor="let time of timeScale; let i=index" id="emptyEvent"
+            (click)="openCreateModal(ressRef.id,selectedDate)">
+            <ng-container *ngFor="let event of events">
+              <app-event [event]="event" [ressRef]="ressRef.id" [index]="i"></app-event>
+            </ng-container>
+          </th>
+        </ng-container>
+        <ng-container *ngIf="calendarFormat=='perWeek'">
+          <th class="widthed" *ngFor="let time of timeScale; let i=index" id="emptyEvent"
+          (click)="openCreateModal(ressRef.id,selectedDate)">
           <ng-container *ngFor="let event of events">
             <app-event [event]="event" [ressRef]="ressRef.id" [index]="i"></app-event>
           </ng-container>
         </th>
+        <th class="widthed" *ngFor="let time of timeScale; let i=index" id="emptyEvent"
+        (click)="openCreateModal(ressRef.id,selectedDate)">
+        <ng-container *ngFor="let event of events">
+          <app-event [event]="event" [ressRef]="ressRef.id" [index]="i"></app-event>
+        </ng-container>
+      </th>
+        </ng-container>
       </tr>
       </td>
       </tr>
     </tbody>
-
   </table>
 </div>

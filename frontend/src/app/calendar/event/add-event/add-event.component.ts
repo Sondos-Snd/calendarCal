@@ -1,5 +1,6 @@
 import { Component, OnInit,EventEmitter, Output, Input } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
+import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { BsModalRef } from 'ngx-bootstrap/modal';
 import { EventService } from 'src/app/Services/event.service';
 
@@ -17,7 +18,7 @@ export class AddEventComponent implements OnInit {
 
   preview: string = '';
 
-  constructor(private eventService:EventService) {
+  constructor(private eventService:EventService,public activeModal: NgbActiveModal) {
   }
 
   eventForm = new FormGroup({
@@ -28,19 +29,18 @@ export class AddEventComponent implements OnInit {
     startEvent: new FormControl(''),
     endEvent: new FormControl(''),
   }); 
-  
+
+  closeCustom() {
+    this.activeModal.close();
+  }  
 
   save() {
-    this.eventService.create((JSON.stringify(this.eventForm.value)));   
+    this.eventService.create((JSON.stringify(this.eventForm.value)));  
     this.passEntry.emit({ data: this.eventService.getEvents() , res:200  });  
+    this.activeModal.close();
   }
 
   ngOnInit(): void {
     
   }
-
-  passBack() {
-     
-    }
-
 }

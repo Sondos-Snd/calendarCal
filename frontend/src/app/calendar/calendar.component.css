@@ -13,4 +13,10 @@ th,td {
     cursor:pointer;
 }
 
+.half-timed{
+    width: 50px;
+    background-color: #6c757d; 
+    color: white;
+}
+
 

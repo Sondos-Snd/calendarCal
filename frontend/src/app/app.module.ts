@@ -4,7 +4,7 @@ import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { HttpClientModule } from '@angular/common/http';
 import {RouterModule} from '@angular/router';
-import {NgbModalModule, NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import {NgbActiveModal, NgbModalModule, NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { CalendarComponent } from './calendar/calendar.component';
 import { FormsModule } from '@angular/forms';
 import { EventComponent } from './calendar/event/event.component';
@@ -38,7 +38,7 @@ import { DataTablesModule } from 'angular-datatables';
     ReactiveFormsModule,
     DataTablesModule
   ],
-  providers: [],
+  providers: [NgbActiveModal],
   bootstrap: [AppComponent],
   entryComponents: [ EventComponent ]
 })
