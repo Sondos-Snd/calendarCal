@@ -20,5 +20,6 @@ Endpoints:
 Frontend: Angular 14 / Bootstrap
 
 Overview actuel:
-![format final](https://user-images.githubusercontent.com/52915601/198564991-43beef96-f365-4f50-9c44-9479e74788c4.png)
+![image](https://user-images.githubusercontent.com/52915601/200260673-d0242030-3051-4e48-b138-1469e1941968.png)
+
 
