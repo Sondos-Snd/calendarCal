@@ -1,10 +1,5 @@
  
-  <div *ngIf="event.index==index  && event.ressName==ressRef ;then inEvent else noEvent"></div>
-  <ng-template #inEvent>
-    <button class="{{event.type}} event" (click)="openEditModal(event,index)" >{{event.title}}
-      <i class="fas fa-redo x-icon" *ngIf="event?.type === 'reccurrentEvent'" ></i>
-    </button> 
-  </ng-template>                         
+  <div *ngIf="event.indexStart==index  && event.ressName==ressRef ;then inEvent else noEvent"></div>                      
   <ng-template #noEvent>
   <span class="noEvent"></span>  
   </ng-template>              

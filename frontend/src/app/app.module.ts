@@ -10,7 +10,7 @@ import { FormsModule } from '@angular/forms';
 import { EventComponent } from './calendar/event/event.component';
 import { SplitLastPipe } from './Pipes/split-last.pipe';
 import { ReactiveFormsModule } from '@angular/forms';
-import { AddEventComponent } from './calendar/event/add-event/add-event.component';
+import { AddEventComponent } from './calendar/add-event/add-event.component';
 import { UpdateEventComponent } from './calendar/event/update-event/update-event.component';
 import { SearchPipe } from './Pipes/search.pipe';
 import { DataTablesModule } from 'angular-datatables';
@@ -38,7 +38,7 @@ import { DataTablesModule } from 'angular-datatables';
     ReactiveFormsModule,
     DataTablesModule
   ],
-  providers: [NgbActiveModal],
+  providers: [NgbActiveModal,AppComponent],
   bootstrap: [AppComponent],
   entryComponents: [ EventComponent ]
 })

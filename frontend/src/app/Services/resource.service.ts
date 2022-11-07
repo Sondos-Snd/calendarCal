@@ -26,12 +26,7 @@ export class ResourceService {
         description: "sthg",
         ressgroup: "sthg",
       },
-      {
-        id:3,
-        name: "Ress 3",
-        description: "sthg",
-        ressgroup: "sthg",
-      },
+ 
     ];
   }
 

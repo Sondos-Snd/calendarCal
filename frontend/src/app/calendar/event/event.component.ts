@@ -8,7 +8,7 @@ import { UpdateEventComponent } from './update-event/update-event.component';
   templateUrl: './event.component.html',
   styleUrls: ['./event.component.css']
 })
-export class EventComponent implements OnInit {  
+export class EventComponent {  
 
   @Input() event: any = {};
   @Input() ressRef: any ="";
@@ -16,19 +16,15 @@ export class EventComponent implements OnInit {
   @Input() closebutton: any='';
 
   @Output() passEntry: EventEmitter<any> = new EventEmitter();
+  @Output() inEvent: any = false;
 
   constructor(private modalService: NgbModal) { }
 
-  ngOnInit(): void {
-
-  }
-
   openEditModal(event:Event,index:number) {
+    this.inEvent=true;
     var modalRef = this.modalService.open(UpdateEventComponent);
     modalRef.componentInstance.event = event;
     modalRef.componentInstance.passEntry.subscribe((receivedEntry:any) => {
-      console.log('recived!');      
-      console.log(receivedEntry.data);
       this.passEntry.emit(receivedEntry.data);
       })
 }

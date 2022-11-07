@@ -4,7 +4,7 @@ import { EventService } from '../Services/event.service';
 import { ResourceService } from '../Services/resource.service';
 import { DataTablesModule } from 'angular-datatables';
 import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { AddEventComponent } from './event/add-event/add-event.component';
+import { AddEventComponent } from './add-event/add-event.component';
 import { DataTableDirective } from 'angular-datatables';
 
 @Component({
@@ -20,6 +20,8 @@ export class CalendarComponent implements OnInit,OnChanges {
   @Input() eventTypes: any='';
 
   // @ViewChild('eventEelement') eventEelement; 
+
+  inEvent:any='';
 
   todayDate=moment().format('D/M/YYYY');
   events: any[] = [];
@@ -41,13 +43,15 @@ export class CalendarComponent implements OnInit,OnChanges {
     this.resources = this.resourceService.getResources(selectedDate);
   }
 
-  openCreateModal(resource:string,date:string) {  
-    
+  openCreateModal(i:any,j:any,resource:string,date:string) {  
     var modalRef = this.modalService.open(AddEventComponent); 
     modalRef.componentInstance.resource = resource;
+    modalRef.componentInstance.index = i;
+    modalRef.componentInstance.indexQuart = j;
     modalRef.componentInstance.date = date;
+   
     modalRef.componentInstance.passEntry.subscribe((receivedEntry:any) => {
-      this.refetchData(this.selectedDate);
+      this.refetchData(this.selectedDate);    
       })
   }
 

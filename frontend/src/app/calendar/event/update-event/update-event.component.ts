@@ -40,9 +40,7 @@ export class UpdateEventComponent implements OnInit {
   }
 
   Erase(){
-    this.eventService.erase((JSON.stringify(this.eventForm.value)));  
-    this.emitService.emit({ data: this.eventService.getEvents() , res:200  });  
-    this.activeModal.close();
+
   }
 
 

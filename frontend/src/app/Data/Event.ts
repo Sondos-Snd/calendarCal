@@ -1,5 +1,6 @@
 export interface Event {
-    index:string,
+    indexStart:string,
+    indexEnd:string,
     title: string,
     startEvent: string,
     endEvent: string,

@@ -27,7 +27,7 @@ export class AppComponent implements OnInit {
     'isReccurrent':false
       }
     ]
-  slotInterval: number= 60;
+  public slotInterval: number= 30;
   openTime: string= '8:00';
   closeTime: string= '20:00';
   timeScale: any= this.getTimeScale(this.slotInterval,this.openTime,this.closeTime)

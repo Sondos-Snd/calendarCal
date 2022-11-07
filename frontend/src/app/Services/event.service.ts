@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable} from 'rxjs';
 import * as moment from 'moment';
+import { json } from 'stream/consumers';
 
 
 const baseUrl = 'http://localhost:8081/api/events';
@@ -13,9 +14,10 @@ export class EventService {
 
   fullEvents=[
     {
-      index:2,
+      indexStart:2,
+      indexEnd:3,
       title: 'first event',
-      startEvent: '02/11/2022 10:00',
+      startEvent: '04/11/2022 10:00',
       endEvent:
         '02/11/2022 11:00',
       resourceId: 1,
@@ -23,9 +25,10 @@ export class EventService {
       type:'workEvent'
     },
     {
-      index:3,
+      indexStart:2,
+      indexEnd:3,
       title: 'second event',
-      startEvent: '02/11/2022 11:00',
+      startEvent: '04/11/2022 11:00',
       endEvent:
         '02/11/2022 12:00',
       resourceId: 2,
@@ -33,28 +36,89 @@ export class EventService {
       type:'breakEvent'
     },
     {
-      index:1,
+      indexStart:2,
+      indexEnd:3,
       title: 'third event',
-      startEvent: '02/11/2022 09:00',
+      startEvent: '04/11/2022 09:00',
       endEvent:
         '02/11/2022 10:00',
-      resourceId: 3,
-      ressName:"Ress 3",
+      resourceId: 2,
+      ressName:"Ress 2",
       type:'workEvent'
     },
-    {
-      index:6,
-      title: 'fourth event',
-      startEvent: '02/11/2022 14:00',
-      endEvent:
-        '02/11/2022 15:00',
-      resourceId: 3,
-      ressName:"Ress 3",
-      type:'reccurrentEvent'
-    },
+
   ];
 
-  constructor(private http: HttpClient) { }
+  startHour:any=''
+  startQuart:any=''
+  endHour:any=''
+  endQuart:any=''
+
+  assignIndex(events:any){
+    
+
+    for (let obj in events){
+
+      let startHour=events[obj]['startEvent'].split(' ')[1].toString();
+      let endHour=events[obj]['endEvent'].split(' ')[1].toString();
+  
+      let dict=[{
+        hour:"08:00",
+        index:1,
+      },
+      {
+        hour:"09:00",
+        index:2,
+      },{
+        hour:"10:00",
+        index:3,
+      },
+      {
+        hour:"11:00",
+        index:4,
+      },
+      {
+        hour:"12:00",
+        index:5,
+      },
+      {
+        hour:"13:00",
+        index:6,
+      },
+      {
+        hour:"14:00",
+        index:7,
+      },
+      {
+        hour:"15:00",
+        index:8,
+      },
+      {
+        hour:"16:00",
+        index:9,
+      },
+      {
+        hour:"17:00",
+        index:10,
+      }]
+  
+      for(let value of dict){
+        if(value.hour===startHour){
+          events[obj]['indexStart']=value.index;         
+        }
+        if(value.hour===endHour){
+          events[obj]['indexEnd']=value.index;        
+        }
+     }
+    }
+   
+  }
+
+  constructor(private http: HttpClient) { 
+    this.assignIndex(this.fullEvents);
+    console.log(this.fullEvents);
+    
+  }
 
   public getEvents(selectedDate?:any) { 
     if(selectedDate){
@@ -87,15 +151,15 @@ export class EventService {
 
   create(data:any){
     data=JSON.parse(data);
-    console.log(data['Reccurrent']);
+    console.log(data);
     if(data['Reccurrent']){
       this.getMonths('Nov',2022).forEach( (element) => {
         let obj={
-          index:0,
+          indexStart:2,
+          indexEnd:3,
           title: data["Title"],
           startEvent: element,
-          endEvent:
-          element,
+          endEvent: element,
           resourceId: 3,
           ressName:"Ress 1",
           type:'reccurrentEvent'
@@ -104,17 +168,33 @@ export class EventService {
     });
 
     }else{
-      let obj={
-        index:0,
-        title: data["Title"],
-        startEvent: moment(data["startEvent"]).format('DD/MM/YYYY HH:mm').toString(),
-        endEvent:
-        moment(data["startEvent"]).format('DD/MM/YYYY HH:mm').toString(),
-        resourceId: 3,
-        ressName:"Ress 1",
-        type:'breakEvent'
-      }  
-      this.fullEvents.push(obj);
+
+      this.startHour=data["startHour"]
+      this.startQuart=data["startQuart"]
+      this.endHour=data["endHour"]
+      this.endQuart=data["endQuart"]
+
+if(this.endHour){
+
+  let obj={
+    indexStart:2,
+    indexEnd:3,
+    title: data["Title"],
+    startEvent: data["startEvent"]+" "+this.startHour.split(':')[0]+this.startQuart,
+    endEvent: data["endEvent"]+" "+this.endHour.split(':')[0]+this.endQuart,
+    resourceId: 3,
+    ressName:"Ress 1",
+    type:'breakEvent'
+  }  
+
+  console.log('created obj');
+  console.log(obj);
+  
+  
+  this.fullEvents.push(obj);
+
+}
+
     }    
   }
 
